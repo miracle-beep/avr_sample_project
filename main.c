@@ -10,6 +10,19 @@ int main(void){
 	DISPLAY = 0b00000000;
 	KEY = 0b11111111;
 	while(1){
-		DISPLAY = 0xBF;
+		unsigned int ctr = 0;
+		unsigned int ctr_let = 0;
+		 if(PINB == 0b11111111){
+		 for(ctr;ctr<10;ctr++){
+			 display_number(ctr);
+			 _delay_ms(SLEEPTIME);
+		 }
+	 }
+		 else{
+		 for(ctr_let; ctr_let<7;ctr_let++){
+			 display_letter(ctr_let);
+			 _delay_ms(SLEEPTIME);
+		 }
+		 }
 	}
 }
