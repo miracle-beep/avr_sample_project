@@ -1,29 +1,36 @@
 #include <avr/io.h>
 #include <util/delay.h>
-#include <kt10281dko.h>
-#define SLEEPTIME 1000
+#include <ca04-41ewa.h>
 #define F_CPU 1000000UL
-#define KEY PORTB
+#define SLEEPTIME 300
+#define INPUT PORTC
 int main(void){
 	DDRD = 0b11111111;
-	DDRB = 0b00000000;
+	DDRB = 0b11111111;
+	DDRC = 0b00000000;
 	DISPLAY = 0b00000000;
-	KEY = 0b11111111;
+	CONTROL = 0b00000000;
+	INPUT = 0b00000001;
 	while(1){
-		display_digit(letter_to_number('h'));
+		if(0==(PINC & (1<<0))){
+		display_digit(1,1);
 		_delay_ms(SLEEPTIME);
-		clean_display();
-		display_digit(letter_to_number('e'));
+		display_digit(2,2);
 		_delay_ms(SLEEPTIME);
-		clean_display();
-		display_digit(letter_to_number('l'));
+		display_digit(3,3);
 		_delay_ms(SLEEPTIME);
-		clean_display();
-		display_digit(letter_to_number('l'));
+		display_digit(4,4);
 		_delay_ms(SLEEPTIME);
-		clean_display();
-		display_digit(letter_to_number('o'));
+		 }
+		 else{
+		 display_digit(9,4);
 		_delay_ms(SLEEPTIME);
-		clean_display();
+		display_digit(8,3);
+		_delay_ms(SLEEPTIME);
+		display_digit(7,2);
+		_delay_ms(SLEEPTIME);
+		display_digit(6,1);
+		_delay_ms(SLEEPTIME); 
 		 }
 	}
+}
